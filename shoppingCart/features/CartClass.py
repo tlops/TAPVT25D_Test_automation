@@ -37,3 +37,12 @@ class ShoppingCart:
         """Calculates the total monetary sum of the cart."""
         total = sum(item['price'] * item['quantity'] for item in self.items.values())
         return round(total, 2)
+"""
+buyer1 = ShoppingCart()
+buyer1.add_book("48 Laws of power", 200)
+buyer1.add_book("Alchmenit", 300)
+buyer1.add_book("48 Laws of power", 200)
+print(buyer1.items)
+buyer1.remove_book("48 Laws of power")
+print(buyer1.items)
+"""
