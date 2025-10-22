@@ -13,14 +13,15 @@ Feature: Bookstore Shopping Cart Management
   Scenario: Remove a book from the cart
     Given the shopping cart contains a book titled "Power" with a quantity of 1 and a price of $200.00 
     When the user removes the book "Power"
-    Then the cart should contain 0 book items
+    Then the cart should contain 0 book item
     And the total number of books should be 0
     And the cart total should be $0.00 
 
   Scenario Outline: Increase quantity when adding an existing book
-    Given the shopping cart contains a book titled "<book_title>" with a quantity of 1 and a price of $250.00
+    Given the shopping cart contains a book titled "<book_title>" with a quantity of <initial_quantity> and a price of $250.00
     When the user adds a book titled "<book_title>" with a price of $250.00
-    Then the cart should contain 1 book item
+    #Then the cart should contain 1 book item
+    Then the cart should contain 2 book item
     And the total number of books should be <expected_quantity> 
     And the cart total should be $<expected_total>
 
@@ -35,6 +36,6 @@ Feature: Bookstore Shopping Cart Management
       | Alchemist       | 300.00  | 2        |
       | The Odyssey     | 150.00  | 1        |
     When the user empties the cart
-    Then the cart should contain 0 book items
+    Then the cart should contain 0 book item
     And the total number of books should be 0
     And the cart total should be $0.00

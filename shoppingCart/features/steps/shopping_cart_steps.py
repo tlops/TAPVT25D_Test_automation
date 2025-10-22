@@ -43,7 +43,7 @@ def step_impl(context):
 
 # --- THEN steps ---
 
-@then('the cart should contain {expected_items:d} book item\w*')
+@then('the cart should contain {expected_items:d} book item')
 def step_impl(context, expected_items):
     """Verifies the number of unique items in the cart."""
     assert context.cart.total_items == expected_items, \
