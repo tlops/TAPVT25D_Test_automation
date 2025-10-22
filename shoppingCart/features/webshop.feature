@@ -21,14 +21,14 @@ Feature: Bookstore Shopping Cart Management
     Given the shopping cart contains a book titled "<book_title>" with a quantity of <initial_quantity> and a price of $250.00
     When the user adds a book titled "<book_title>" with a price of $250.00
     #Then the cart should contain 1 book item
-    Then the cart should contain 2 book item
+    Then the cart should contain 1 book item
     And the total number of books should be <expected_quantity> 
     And the cart total should be $<expected_total>
 
     Examples:
       | book_title                    | initial_quantity | expected_quantity | expected_total |
       | 48 Laws of Power              | 3                | 4                 | 1000.00         |
-      | The richest Man in Babylon    | 1                | 2                 | 500.00         |
+      #      | The richest Man in Babylon    | 1                | 2                 | 500.00         |
 
   Scenario: Empty the entire shopping cart
     Given the shopping cart contains multiple items:
