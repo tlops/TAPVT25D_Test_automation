@@ -1,0 +1,42 @@
+(testenv) tlopsm@QOAFEX:~/git/TAPVT25D_Test_automation/shoppingCart$ behave
+USING RUNNER: behave.runner:Runner
+Feature: Bookstore Shopping Cart Management # features/webshop.feature:1
+  As a user of the bookstore website,
+  I want to manage items in my shopping cart,
+  So that I can purchase the correct books.
+  Scenario: Add a new book to an empty cart                          # features/webshop.feature:6
+    Given the shopping cart is empty                                 # features/steps/shopping_cart_steps.py:6 0.000s
+    When the user adds a book titled "Power" with a price of $200.00 # features/steps/shopping_cart_steps.py:29 0.000s
+    Then the cart should contain 1 book item                         # features/steps/shopping_cart_steps.py:46 0.000s
+    And the total number of books should be 1                        # features/steps/shopping_cart_steps.py:52 0.000s
+    And the cart total should be $200.00                             # features/steps/shopping_cart_steps.py:58 0.000s
+
+  Scenario: Remove a book from the cart                                                                # features/webshop.feature:13
+    Given the shopping cart contains a book titled "Power" with a quantity of 1 and a price of $200.00 # features/steps/shopping_cart_steps.py:11 0.000s
+    When the user removes the book "Power"                                                             # features/steps/shopping_cart_steps.py:34 0.000s
+    Then the cart should contain 0 book item                                                           # features/steps/shopping_cart_steps.py:46 0.000s
+    And the total number of books should be 0                                                          # features/steps/shopping_cart_steps.py:52 0.000s
+    And the cart total should be $0.00                                                                 # features/steps/shopping_cart_steps.py:58 0.000s
+
+  Scenario Outline: Increase quantity when adding an existing book -- @1.1                                        # features/webshop.feature:30
+    Given the shopping cart contains a book titled "48 Laws of Power" with a quantity of 3 and a price of $250.00 # features/steps/shopping_cart_steps.py:11 0.000s
+    When the user adds a book titled "48 Laws of Power" with a price of $250.00                                   # features/steps/shopping_cart_steps.py:29 0.000s
+    Then the cart should contain 1 book item                                                                      # features/steps/shopping_cart_steps.py:46 0.000s
+    And the total number of books should be 4                                                                     # features/steps/shopping_cart_steps.py:52 0.000s
+    And the cart total should be $1000.00                                                                         # features/steps/shopping_cart_steps.py:58 0.000s
+
+  Scenario: Empty the entire shopping cart           # features/webshop.feature:33
+    Given the shopping cart contains multiple items: # features/steps/shopping_cart_steps.py:17 0.000s
+      | title       | price  | quantity |
+      | Alchemist   | 300.00 | 2        |
+      | The Odyssey | 150.00 | 1        |
+    When the user empties the cart                   # features/steps/shopping_cart_steps.py:39 0.000s
+    Then the cart should contain 0 book item         # features/steps/shopping_cart_steps.py:46 0.000s
+    And the total number of books should be 0        # features/steps/shopping_cart_steps.py:52 0.000s
+    And the cart total should be $0.00               # features/steps/shopping_cart_steps.py:58 0.000s
+
+1 feature passed, 0 failed, 0 skipped
+4 scenarios passed, 0 failed, 0 skipped
+20 steps passed, 0 failed, 0 skipped
+Took 0min 0.003s
+(testenv) tlopsm@QOAFEX: $
